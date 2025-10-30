@@ -6,7 +6,6 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
-    # Declare world argument
     world_arg = DeclareLaunchArgument(
         'world',
         default_value=PathJoinSubstitution([
@@ -19,20 +18,13 @@ def generate_launch_description():
 
     world_path = LaunchConfiguration('world')
 
-    # Launch gzserver (physics + world + robot from SDF)
+    # Launch ONLY gzserver with your world (robot included in SDF)
     gzserver = ExecuteProcess(
         cmd=['gzserver', '--verbose', world_path],
         output='screen'
     )
 
-    # Launch gzclient (GUI only)
-    gzclient = ExecuteProcess(
-        cmd=['gzclient'],
-        output='screen'
-    )
-
     return LaunchDescription([
         world_arg,
-        gzserver,
-        gzclient
+        gzserver
     ])
