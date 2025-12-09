@@ -17,7 +17,7 @@
       <direction>-0.5 0.1 -0.9</direction>
     </light>
 
-    <!-- GROUND: 10x10 m -->
+    <!-- GROUND: 3.6 x 2.25 m -->
     <model name="ground_plane">
       <static>true</static>
       <link name="link">
@@ -25,7 +25,7 @@
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>10 10</size>
+              <size>3.6 2.25</size>
             </plane>
           </geometry>
           <surface>
@@ -55,70 +55,121 @@
       </link>
     </model>
 
-    <!-- NORTH WALL: y = +5 -->
+    <!-- NORTH WALL -->
     <model name="north_wall">
       <static>true</static>
-      <pose>0 5 0.5 0 0 0</pose>
+      <pose>0 1.125 0.5 0 0 0</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
+          <geometry>
+            <box>
+              <size>3.6 0.05 1</size>
+            </box>
+          </geometry>
         </collision>
         <visual name="visual">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
-          <material><script><name>Gazebo/White</name></script></material>
+          <geometry>
+            <box>
+              <size>3.6 0.05 1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+            </script>
+          </material>
         </visual>
       </link>
     </model>
 
-    <!-- SOUTH WALL: y = -5 -->
+
+    <!-- SOUTH WALL -->
     <model name="south_wall">
       <static>true</static>
-      <pose>0 -5 0.5 0 0 0</pose>
+      <pose>0 -1.125 0.5 0 0 0</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
+          <geometry>
+            <box>
+              <size>3.6 0.05 1</size>
+            </box>
+          </geometry>
         </collision>
         <visual name="visual">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
-          <material><script><name>Gazebo/White</name></script></material>
+          <geometry>
+            <box>
+              <size>3.6 0.05 1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+            </script>
+          </material>
         </visual>
       </link>
     </model>
 
-    <!-- EAST WALL: x = +5 -->
+
+    <!-- EAST WALL -->
     <model name="east_wall">
       <static>true</static>
-      <pose>5 0 0.5 0 0 1.57</pose>
+      <pose>1.8 0 0.5 0 0 1.57</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
+          <geometry>
+            <box>
+              <size>2.25 0.05 1</size>
+            </box>
+          </geometry>
         </collision>
         <visual name="visual">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
-          <material><script><name>Gazebo/White</name></script></material>
+          <geometry>
+            <box>
+              <size>2.25 0.05 1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+            </script>
+          </material>
         </visual>
       </link>
     </model>
 
-    <!-- WEST WALL: x = -5 -->
+    <!-- WEST WALL -->
     <model name="west_wall">
       <static>true</static>
-      <pose>-5 0 0.5 0 0 1.57</pose>
+      <pose>-1.8 0 0.5 0 0 1.57</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
+          <geometry>
+            <box>
+              <size>2.25 0.05 1</size>
+            </box>
+          </geometry>
         </collision>
         <visual name="visual">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
-          <material><script><name>Gazebo/White</name></script></material>
+          <geometry>
+            <box>
+              <size>2.25 0.05 1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+            </script>
+          </material>
         </visual>
       </link>
     </model>
+
 
     <!-- TOY: Red Cube -->
     <model name="toy">
       <static>true</static>
-      <pose>1.5 1.5 0.1 0 0 0</pose>
+      <pose>0.8 0.6 0.05 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry><box><size>0.2 0.2 0.2</size></box></geometry>
@@ -130,55 +181,232 @@
       </link>
     </model>
 
-    <!-- HUMAN 1: Blue (Owner) — Realistic -->
-    <model name="human1">
-      <static>true</static>
-      <pose>-1.5 -1.5 0 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
+    <!-- HUMAN_OWNER -->
+    <model name="human_owner">
+      <pose>0 2.5 0 0 0 0</pose>
+      <static>false</static>
+
+      <!-- Body -->
+      <link name="body">
+        <visual name="body_visual">
+          <geometry>
+            <box>
+              <size>0.5 0.3 1.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0 0 1 1</ambient>
+          </material>
+        </visual>
+
+        <collision name="body_collision">
+          <geometry>
+            <box>
+              <size>0.5 0.3 1.5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+
+      <!-- Left Wheel -->
+      <link name="left_wheel">
+        <pose>-0.25 0 0.75 0 1.57 0</pose>
+        <visual name="left_wheel_visual">
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
-              <length>1.8</length>
+              <radius>0.1</radius>
+              <length>0.05</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 1 1</ambient>
+          </material>
+        </visual>
+
+        <collision name="left_wheel_collision">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.05</length>
             </cylinder>
           </geometry>
         </collision>
-        <visual name="visual">
+      </link>
+
+      <!-- Right Wheel -->
+      <link name="right_wheel">
+        <pose>0.25 0 0.75 0 1.57 0</pose>
+        <visual name="right_wheel_visual">
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
-              <length>1.8</length>
+              <radius>0.1</radius>
+              <length>0.05</length>
             </cylinder>
           </geometry>
-          <material><script><name>Gazebo/Blue</name></script></material>
+          <material>
+            <ambient>0 0 1 1</ambient>
+          </material>
         </visual>
+
+        <collision name="right_wheel_collision">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.05</length>
+            </cylinder>
+          </geometry>
+        </collision>
       </link>
+
+      <!-- Left Joint -->
+      <joint name="body_left_wheel_joint" type="revolute">
+        <parent>body</parent>
+        <child>left_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+        </axis>
+      </joint>
+
+      <!-- Right Joint -->
+      <joint name="body_right_wheel_joint" type="revolute">
+        <parent>body</parent>
+        <child>right_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+        </axis>
+      </joint>
+
+      <!-- Diff Drive -->
+      <plugin name="diff_drive_human_owner" filename="libgazebo_ros_diff_drive.so">
+        <ros>
+          <namespace>/human_owner</namespace>
+          <argument>~/cmd_vel:=cmd_vel</argument>
+        </ros>
+        <wheel_separation>0.5</wheel_separation>
+        <wheel_diameter>0.2</wheel_diameter>
+
+        <left_joint>body_left_wheel_joint</left_joint>
+        <right_joint>body_right_wheel_joint</right_joint>
+
+        <publish_tf>true</publish_tf>
+        <publish_wheel_tf>false</publish_wheel_tf>
+        <update_rate>20</update_rate>
+      </plugin>
     </model>
 
-    <!-- HUMAN 2: Green (Stranger) — Realistic -->
-    <model name="human2">
-      <static>true</static>
-      <pose>1.5 -1.5 0 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
+
+    <!-- HUMAN STRANGER -->
+    <model name="human_stranger">
+      <pose>2 0.2 0 0 0 0</pose>
+      <static>false</static>
+
+      <!-- Body -->
+      <link name="body">
+        <visual name="body_visual">
+          <geometry>
+            <box>
+              <size>0.5 0.3 1.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+          </material>
+        </visual>
+
+        <collision name="body_collision">
+          <geometry>
+            <box>
+              <size>0.5 0.3 1.5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+
+      <!-- Left Wheel -->
+      <link name="left_wheel">
+        <pose>-0.25 0 0.75 0 1.57 0</pose>
+        <visual name="left_wheel_visual">
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
-              <length>1.8</length>
+              <radius>0.1</radius>
+              <length>0.05</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+          </material>
+        </visual>
+
+        <collision name="left_wheel_collision">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.05</length>
             </cylinder>
           </geometry>
         </collision>
-        <visual name="visual">
+      </link>
+
+      <!-- Right Wheel -->
+      <link name="right_wheel">
+        <pose>0.25 0 0.75 0 1.57 0</pose>
+        <visual name="right_wheel_visual">
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
-              <length>1.8</length>
+              <radius>0.1</radius>
+              <length>0.05</length>
             </cylinder>
           </geometry>
-          <material><script><name>Gazebo/Green</name></script></material>
+          <material>
+            <ambient>1 0 0 1</ambient>
+          </material>
         </visual>
+
+        <collision name="right_wheel_collision">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.05</length>
+            </cylinder>
+          </geometry>
+        </collision>
       </link>
+
+      <!-- Left Joint -->
+      <joint name="body_left_wheel_joint" type="revolute">
+        <parent>body</parent>
+        <child>left_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+        </axis>
+      </joint>
+
+      <!-- Right Joint -->
+      <joint name="body_right_wheel_joint" type="revolute">
+        <parent>body</parent>
+        <child>right_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+        </axis>
+      </joint>
+
+      <!-- Diff Drive -->
+      <plugin name="diff_drive_human_stranger" filename="libgazebo_ros_diff_drive.so">
+        <ros>
+          <namespace>/human_stranger</namespace>
+          <argument>~/cmd_vel:=cmd_vel</argument>
+        </ros>
+        <wheel_separation>0.5</wheel_separation>
+        <wheel_diameter>0.2</wheel_diameter>
+        <left_joint>body_left_wheel_joint</left_joint>
+        <right_joint>body_right_wheel_joint</right_joint>
+
+        <publish_tf>true</publish_tf>
+        <publish_wheel_tf>false</publish_wheel_tf>
+        <update_rate>20</update_rate>
+      </plugin>
     </model>
+
 
     <!-- ROBOT: TurtleBot3 Burger -->
     <include>
