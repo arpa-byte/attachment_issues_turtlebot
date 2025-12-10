@@ -221,16 +221,16 @@
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.09</radius>
-              <length>0.30</length>
+              <radius>0.10</radius>
+              <length>0.50</length>
             </cylinder>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
             <cylinder>
-              <radius>0.09</radius>
-              <length>0.30</length>
+              <radius>0.10</radius>
+              <length>0.50</length>
             </cylinder>
           </geometry>
           <material>
