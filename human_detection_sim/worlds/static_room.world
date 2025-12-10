@@ -1,8 +1,7 @@
 <?xml version="1.0" ?>
 <sdf version="1.7">
-  <world name="new_simple_room">
+  <world name="static_room">
 
-    <!-- Sun Light -->
     <light name="sun" type="directional">
       <cast_shadows>true</cast_shadows>
       <pose>0 0 10 0 0 0</pose>
@@ -17,7 +16,7 @@
       <direction>-0.5 0.1 -0.9</direction>
     </light>
 
-    <!-- GROUND: 10x10 m -->
+    <!-- GROUND -->
     <model name="ground_plane">
       <static>true</static>
       <link name="link">
@@ -25,7 +24,7 @@
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>10 10</size>
+              <size>3.6 2.25</size>
             </plane>
           </geometry>
           <surface>
@@ -55,142 +54,206 @@
       </link>
     </model>
 
-    <!-- NORTH WALL: y = +5 -->
+    <!-- NORTH WALL -->
     <model name="north_wall">
       <static>true</static>
-      <pose>0 5 0.5 0 0 0</pose>
+      <pose>0 1.125 0.2 0 0 0</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
+          <geometry>
+            <box>
+              <size>3.6 0.05 0.4</size>
+            </box>
+          </geometry>
         </collision>
         <visual name="visual">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
-          <material><script><name>Gazebo/White</name></script></material>
+          <geometry>
+            <box>
+              <size>3.6 0.05 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+            </script>
+          </material>
         </visual>
       </link>
     </model>
 
-    <!-- SOUTH WALL: y = -5 -->
+    <!-- SOUTH WALL -->
     <model name="south_wall">
       <static>true</static>
-      <pose>0 -5 0.5 0 0 0</pose>
+      <pose>0 -1.125 0.2 0 0 0</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
+          <geometry>
+            <box>
+              <size>3.6 0.05 0.4</size>
+            </box>
+          </geometry>
         </collision>
         <visual name="visual">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
-          <material><script><name>Gazebo/White</name></script></material>
+          <geometry>
+            <box>
+              <size>3.6 0.05 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+            </script>
+          </material>
         </visual>
       </link>
     </model>
 
-    <!-- EAST WALL: x = +5 -->
+    <!-- EAST WALL -->
     <model name="east_wall">
       <static>true</static>
-      <pose>5 0 0.5 0 0 1.57</pose>
+      <pose>1.8 0 0.2 0 0 1.57</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
+          <geometry>
+            <box>
+              <size>2.25 0.05 0.4</size>
+            </box>
+          </geometry>
         </collision>
         <visual name="visual">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
-          <material><script><name>Gazebo/White</name></script></material>
+          <geometry>
+            <box>
+              <size>2.25 0.05 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+            </script>
+          </material>
         </visual>
       </link>
     </model>
 
-    <!-- WEST WALL: x = -5 -->
+    <!-- WEST WALL -->
     <model name="west_wall">
       <static>true</static>
-      <pose>-5 0 0.5 0 0 1.57</pose>
+      <pose>-1.8 0 0.2 0 0 1.57</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
+          <geometry>
+            <box>
+              <size>2.25 0.05 0.4</size>
+            </box>
+          </geometry>
         </collision>
         <visual name="visual">
-          <geometry><box><size>10 0.1 1</size></box></geometry>
-          <material><script><name>Gazebo/White</name></script></material>
+          <geometry>
+            <box>
+              <size>2.25 0.05 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+            </script>
+          </material>
         </visual>
       </link>
     </model>
 
-    <!-- TOY: Red Cube -->
+
+    <!-- Toy -->
     <model name="toy">
       <static>true</static>
-      <pose>1.5 1.5 0.1 0 0 0</pose>
+      <pose>1 1 0.25 0 0 0</pose>  <!-- height/2 so it sits on the floor -->
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>0.2 0.2 0.2</size></box></geometry>
+          <geometry>
+            <box><size>0.1 0.1 0.3</size></box>   <!-- base 0.5m x 0.5m, height 0.5m -->
+          </geometry>
         </collision>
         <visual name="visual">
-          <geometry><box><size>0.2 0.2 0.2</size></box></geometry>
-          <material><script><name>Gazebo/Red</name></script></material>
+          <geometry>
+            <box><size>0.1 0.1 0.3</size></box>
+          </geometry>
+          <material>
+            <script><name>Gazebo/Green</name></script>
+          </material>
         </visual>
       </link>
     </model>
 
-    <!-- HUMAN 1: Blue (Owner) — Realistic -->
+
+
+    <!-- HUMAN 1: OWNER (RED) -->
     <model name="human1">
       <static>true</static>
-      <pose>-1.5 -1.5 0 0 0 0</pose>
+      <pose>-1 -1 0 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
-              <length>1.8</length>
+              <radius>0.10</radius>
+              <length>0.50</length>
             </cylinder>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
-              <length>1.8</length>
+              <radius>0.10</radius>
+              <length>0.50</length>
             </cylinder>
           </geometry>
-          <material><script><name>Gazebo/Blue</name></script></material>
+          <material>
+            <script><name>Gazebo/Red</name></script>
+          </material>
         </visual>
       </link>
     </model>
 
-    <!-- HUMAN 2: Green (Stranger) — Realistic -->
+    <!-- HUMAN 2: STRANGER (BLUE) -->
     <model name="human2">
       <static>true</static>
-      <pose>1.5 -1.5 0 0 0 0</pose>
+      <pose>1 -1 0 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
-              <length>1.8</length>
+              <radius>0.09</radius>
+              <length>0.30</length>
             </cylinder>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
-              <length>1.8</length>
+              <radius>0.09</radius>
+              <length>0.30</length>
             </cylinder>
           </geometry>
-          <material><script><name>Gazebo/Green</name></script></material>
+          <material>
+            <script><name>Gazebo/Blue</name></script>
+          </material>
         </visual>
       </link>
     </model>
 
-    <!-- ROBOT: TurtleBot3 Burger -->
+    <!-- TurtleBot3 -->
     <include>
       <uri>model://turtlebot3_burger</uri>
       <pose>0 0 0 0 0 0</pose>
     </include>
 
-    <!-- Physics -->
-    <physics type="ode">
-      <gravity>0 0 -9.8</gravity>
-      <real_time_update_rate>1000.0</real_time_update_rate>
-    </physics>
+    <plugin name="gazebo_ros_init" filename="libgazebo_ros_init.so"/>
+    <plugin name="gazebo_ros_factory" filename="libgazebo_ros_factory.so"/>
 
   </world>
+
+  <physics type="ode">
+    <gravity>0 0 -9.8</gravity>
+    <real_time_update_rate>1000.0</real_time_update_rate>
+  </physics>
+
 </sdf>
