@@ -26,6 +26,7 @@ setup(
         'console_scripts': [
             'odom_to_pose2d = pose_bridge.odom_to_pose2d:main',
             'static_poses = pose_bridge.static_pose_publisher:main',
+            'gazebo_model_pose_relay = pose_bridge.gazebo_model_pose_relay:main',  # ← NEW
         ],
     },
 )

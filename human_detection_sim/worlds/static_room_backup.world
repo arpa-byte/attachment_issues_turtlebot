@@ -1,8 +1,5 @@
 <?xml version="1.0" ?>
-<!-- static_room.world.xacro (patched) -->
-<sdf version="1.7" xmlns:xacro="http://www.ros.org/wiki/xacro">
-
-
+<sdf version="1.7">
   <world name="static_room">
 
     <light name="sun" type="directional">
@@ -57,7 +54,7 @@
       </link>
     </model>
 
-    <!-- Walls (unchanged) -->
+    <!-- NORTH WALL -->
     <model name="north_wall">
       <static>true</static>
       <pose>0 1.125 0.2 0 0 0</pose>
@@ -84,6 +81,7 @@
       </link>
     </model>
 
+    <!-- SOUTH WALL -->
     <model name="south_wall">
       <static>true</static>
       <pose>0 -1.125 0.2 0 0 0</pose>
@@ -110,6 +108,7 @@
       </link>
     </model>
 
+    <!-- EAST WALL -->
     <model name="east_wall">
       <static>true</static>
       <pose>1.8 0 0.2 0 0 1.57</pose>
@@ -136,6 +135,7 @@
       </link>
     </model>
 
+    <!-- WEST WALL -->
     <model name="west_wall">
       <static>true</static>
       <pose>-1.8 0 0.2 0 0 1.57</pose>
@@ -162,77 +162,83 @@
       </link>
     </model>
 
-    <!-- HUMAN 1: OWNER (RED) -->
-<model name="human1">
-  <static>true</static>
-  <pose>-1.0 -1.0 0 0 0 0</pose>
-  <link name="link">
-    <collision name="collision">
-      <geometry>
-        <cylinder>
-          <radius>0.10</radius>
-          <length>0.50</length>
-        </cylinder>
-      </geometry>
-    </collision>
-    <visual name="visual">
-      <geometry>
-        <cylinder>
-          <radius>0.10</radius>
-          <length>0.50</length>
-        </cylinder>
-      </geometry>
-      <material><script><name>Gazebo/Red</name></script></material>
-    </visual>
-  </link>
-</model>
-
-
-    <!-- HUMAN 2: STRANGER (BLUE) -->
-<model name="human2">
-  <static>true</static>
-  <pose>1.0 -1.0 0 0 0 0</pose>
-  <link name="link">
-    <collision name="collision">
-      <geometry>
-        <cylinder>
-          <radius>0.10</radius>
-          <length>0.50</length>
-        </cylinder>
-      </geometry>
-    </collision>
-    <visual name="visual">
-      <geometry>
-        <cylinder>
-          <radius>0.10</radius>
-          <length>0.50</length>
-        </cylinder>
-      </geometry>
-      <material><script><name>Gazebo/Blue</name></script></material>
-    </visual>
-  </link>
-</model>
-
 
     <!-- Toy -->
-<model name="toy">
-  <static>true</static>
-  <pose>1.0 1.0 0.25 0 0 0</pose>
-  <link name="link">
-    <collision name="collision">
-      <geometry>
-        <box><size>0.1 0.1 0.3</size></box>
-      </geometry>
-    </collision>
-    <visual name="visual">
-      <geometry>
-        <box><size>0.1 0.1 0.3</size></box>
-      </geometry>
-      <material><script><name>Gazebo/Green</name></script></material>
-    </visual>
-  </link>
-</model>
+    <model name="toy">
+      <static>false</static>
+      <pose>1 1 0.25 0 0 0</pose>  <!-- height/2 so it sits on the floor -->
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.1 0.1 0.3</size></box>   <!-- base 0.5m x 0.5m, height 0.5m -->
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.1 0.1 0.3</size></box>
+          </geometry>
+          <material>
+            <script><name>Gazebo/Green</name></script>
+          </material>
+        </visual>
+      </link>
+    </model>
 
+
+
+    <!-- HUMAN 1: OWNER (RED) -->
+    <model name="human1">
+      <static>false</static>
+      <pose>1 -1 0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.10</radius>
+              <length>0.50</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.10</radius>
+              <length>0.50</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script><name>Gazebo/Red</name></script>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- HUMAN 2: STRANGER (BLUE) -->
+    <model name="human2">
+      <static>false</static>
+      <pose>-1 -1 0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.10</radius>
+              <length>0.50</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.10</radius>
+              <length>0.50</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script><name>Gazebo/Blue</name></script>
+          </material>
+        </visual>
+      </link>
+    </model>
 
     <!-- TurtleBot3 -->
     <include>

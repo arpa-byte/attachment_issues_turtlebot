@@ -13,7 +13,7 @@ def generate_launch_description():
         default_value=PathJoinSubstitution([
             FindPackageShare('human_detection_sim'),
             'worlds',
-            'static_room.world'
+            'static_room_two.world'
         ]),
         description='Full path to Gazebo world file'
     )

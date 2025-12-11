@@ -234,7 +234,7 @@
             </cylinder>
           </geometry>
           <material>
-            <script><name>Gazebo/Blue</name></script>
+            <script><name>Gazebo/Yellow</name></script>
           </material>
         </visual>
       </link>
@@ -246,10 +246,13 @@
       <pose>0 0 0 0 0 0</pose>
     </include>
 
-    <plugin name="gazebo_ros_init" filename="libgazebo_ros_init.so"/>
-    <plugin name="gazebo_ros_factory" filename="libgazebo_ros_factory.so"/>
-
-  </world>
+<!-- THIS IS THE ONLY CORRECT PLUGIN FOR GAZEBO CLASSIC 11 + ROS2 HUMBLE 
+  <plugin filename="libgazebo_ros_state.so" name="gazebo_ros_state">
+    <ros>
+      <namespace>/gazebo</namespace>
+    </ros>
+    <update_rate>10</update_rate>
+  </plugin>-->
 
   <physics type="ode">
     <gravity>0 0 -9.8</gravity>
